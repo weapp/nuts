@@ -1,0 +1,13 @@
+Hola {{name|default("mundo")}}!
+<br/>
+<a href="/init/hola/Manu"> Hola Manu </a> - <a href="/init/hola/Jose"> Hola Jose </a>
+<br /><br />
+<form method="post">
+<input type="hidden" name="action" value="addRegister" />
+<input type="text" name="txt" value="{{post.txt|default('escribe texto aqui')}}" /> 
+<input type="submit"/>
+</form>
+{% for register in Nuts_Hola.getRegisters %}
+    {{register.txt}}
+    <hr>
+{% endfor %}

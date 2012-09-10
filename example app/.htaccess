@@ -1,0 +1,9 @@
+RewriteEngine on
+
+RewriteRule ^static/(.*)$ static/$1 [QSA,L,NC]
+RewriteRule ^robots\.txt$ static/robots.txt [QSA,L,NC]
+RewriteRule ^humans\.txt$ static/humans.txt [QSA,L,NC]
+RewriteRule ^sitemap\.xml$ static/sitemap.xml [QSA,L,NC]
+RewriteRule ^favicon\.ico$ static/favicon.ico [QSA,L,NC]
+
+RewriteRule ^(.*)$ index.php [QSA,L,NC]
