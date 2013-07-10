@@ -18,62 +18,62 @@ Download it, and place it in your proyect folder with a copy of Twig.
 `index.php`
 
 ```php
-    <?php
-    require('./Nuts/Autoloader.php');
-    Nuts_Autoloader::register();
+<?php
+require('./Nuts/Autoloader.php');
+Nuts_Autoloader::register();
 
-    $nuts = new Nuts_Nuts();
-    $nuts->processURL(array('Nuts_Hola'));
+$nuts = new Nuts_Nuts();
+$nuts->processURL(array('Nuts_Hola'));
 
-    $nuts->config['description'] = "Hola";
-    $nuts->config['keywords'] = array('Hola','mundo');
+$nuts->config['description'] = "Hola";
+$nuts->config['keywords'] = array('Hola','mundo');
 
-    if($nuts->route("","hola")):
-    elseif($nuts->route("hola/%name", "hola")): 
-    else:
-        $nuts->error404();
-    endif;
+if($nuts->route("","hola")):
+elseif($nuts->route("hola/%name", "hola")): 
+else:
+    $nuts->error404();
+endif;
 
-    $twig = $nuts->initTwig();
-    $nuts->render();
-    ?>
+$twig = $nuts->initTwig();
+$nuts->render();
+?>
 ```
 
     
 `templates/hola.twig`
 
 ```html
-    Hola {{name|default("mundo")}}!
-    <br/>
-    <a href="/init/hola/Manu"> Hola Manu </a> - <a href="/init/hola/Jose"> Hola Jose </a>
-    <br /><br />
-    <form method="post">
+Hola {{name|default("mundo")}}!
+<br/>
+<a href="/init/hola/Manu"> Hola Manu </a> - <a href="/init/hola/Jose"> Hola Jose </a>
+<br /><br />
+<form method="post">
     <input type="hidden" name="action" value="addRegister" />
     <input type="text" name="txt" value="{{post.txt|default('escribe texto aqui')}}" /> 
     <input type="submit"/>
-    </form>
-    {% for register in Nuts_Hola.getRegisters %}
-        {{register.txt}}
-        <hr>
-    {% endfor %}
+</form>
+{% for register in Nuts_Hola.getRegisters %}
+    {{register.txt}}
+    <hr>
+{% endfor %}
 ```
 
 `Nuts/Hola.php`
 
 ```php
-    <?php
-    class Nuts_Hola{
+<?php
+class Nuts_Hola{
 
-        function public_addRegister($txt){
-            $collection = DB::$db->registros;
-            $collection->insert(array("txt"=>$txt));
-        }
-        
-        function getRegisters(){
-            $collection = DB::$db->registros;
-            return $collection->find();
-        }
-        
+    function public_addRegister($txt){
+        $collection = DB::$db->registros;
+        $collection->insert(array("txt"=>$txt));
     }
-    ?>
+    
+    function getRegisters(){
+        $collection = DB::$db->registros;
+        return $collection->find();
+    }
+    
+}
+?>
 ```
