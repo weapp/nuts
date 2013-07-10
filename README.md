@@ -17,6 +17,7 @@ Download it, and place it in your proyect folder with a copy of Twig.
 
 `index.php`
 
+```php
     <?php
     require('./Nuts/Autoloader.php');
     Nuts_Autoloader::register();
@@ -36,9 +37,12 @@ Download it, and place it in your proyect folder with a copy of Twig.
     $twig = $nuts->initTwig();
     $nuts->render();
     ?>
+```
+
     
 `templates/hola.twig`
 
+```html
     Hola {{name|default("mundo")}}!
     <br/>
     <a href="/init/hola/Manu"> Hola Manu </a> - <a href="/init/hola/Jose"> Hola Jose </a>
@@ -52,9 +56,11 @@ Download it, and place it in your proyect folder with a copy of Twig.
         {{register.txt}}
         <hr>
     {% endfor %}
+```
 
 `Nuts/Hola.php`
 
+```php
     <?php
     class Nuts_Hola{
 
@@ -70,3 +76,4 @@ Download it, and place it in your proyect folder with a copy of Twig.
         
     }
     ?>
+```
